@@ -15,6 +15,10 @@ main{
   position: relative;
 }
 
+svg {
+  will-change: transform;
+}
+
 #canvas-elem::after{
  content: ""; /* without content they won't render */
  height: 100%;
@@ -250,18 +254,88 @@ section{
   }
 
 
+/* ===== PRELOADER ROOT ===== */
+.preloader {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #0b0f1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  overflow: hidden;
+}
 
-  .preloader {
-    transform: translateY(0);
+/* ===== INNER CONTAINER ===== */
+.preloader-inner {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== SVG ===== */
+.preloader-svg {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  transform-origin: center;
+  will-change: transform;
+}
+
+/* ===== BACKGROUND CIRCLE ===== */
+.preloader-circle-bg {
+  stroke: #2a2f3a;
+  stroke-width: 2;
+  fill: none;
+}
+
+/* ===== PROGRESS ARC ===== */
+.preloader-circle-progress {
+  stroke: #ff3b3b;
+  stroke-width: 2;
+  fill: none;
+  stroke-dasharray: 80 340;
+  stroke-linecap: round;
+  will-change: stroke-dashoffset;
+}
+
+/* ===== DOG IMAGE ===== */
+.preloader-dog {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+/* ===== OPTIONAL: SUBTLE GLOW ===== */
+.preloader-circle-progress {
+  filter: drop-shadow(0 0 6px rgba(255, 59, 59, 0.5));
+}
+
+/* ===== EXIT ANIMATION (if using CSS fallback) ===== */
+.preloader.exit {
+  animation: slideUp 1.2s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+.preloader-dog {
+  width: 40px;
+  height: 40px;
+  object-fit: none;
+
+  /* crop to first frame */
+  object-position: left center;
+
+  /* IMPORTANT */
+  image-rendering: auto;
+}
+
+@keyframes slideUp {
+  to {
+    transform: translateY(-100%);
   }
-  
-  .preloader.slide-up {
-    animation: slideUp 1.2s cubic-bezier(0.76, 0, 0.24, 1) forwards;
-    animation-delay: 1.3s;
-  }
-  
-  @keyframes slideUp {
-    to {
-      transform: translateY(-100%);
-    }
-  }
+}

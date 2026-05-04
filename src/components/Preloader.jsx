@@ -1,29 +1,75 @@
 import { useEffect, useRef } from "react";
+import gsap from "gsap";
 
 const Preloader = ({ onComplete }) => {
-  const ref = useRef();
+  const containerRef = useRef();
+  const svgRef = useRef();
+  const progressRef = useRef();
 
   useEffect(() => {
-    const el = ref.current;
+    const tl = gsap.timeline({ onComplete });
 
-    // trigger animation after mount
-    requestAnimationFrame(() => {
-      el.classList.add("slide-up");
+    // rotate whole svg
+    gsap.to(svgRef.current, {
+      rotate: 360,
+      duration: 2,
+      ease: "linear",
+      repeat: -1,
+      transformOrigin: "50% 50%",
     });
 
-    const timer = setTimeout(() => {
-      onComplete();
-    }, 2500); // match animation duration
+    // animate arc movement
+    gsap.to(progressRef.current, {
+      strokeDashoffset: -200,
+      duration: 1.5,
+      ease: "power1.inOut",
+      repeat: -1,
+    });
 
-    return () => clearTimeout(timer);
+    // exit
+    tl.to({}, { duration: 2.5 })
+      .to(containerRef.current, {
+        y: "-100%",
+        duration: 1.2,
+        ease: "power4.inOut",
+      });
+
   }, []);
 
   return (
     <div
-      ref={ref}
-      className="preloader fixed top-0 left-0 w-full h-screen bg-black text-white flex items-center justify-center z-[999]"
+      ref={containerRef}
+      className="preloader"
     >
-      <h1 className="text-4xl tracking-widest">DOGSTUDIO</h1>
+      <div className="preloader-inner">
+
+        <svg
+          ref={svgRef}
+          className="preloader-svg"
+          viewBox="0 0 120 120"
+        >
+          <circle
+            cx="60"
+            cy="60"
+            r="54"
+            className="preloader-circle-bg"
+          />
+          <circle
+            ref={progressRef}
+            cx="60"
+            cy="60"
+            r="54"
+            className="preloader-circle-progress"
+          />
+        </svg>
+
+        <img
+          src="/dog.png"
+          alt="dog"
+          className="preloader-dog"
+        />
+
+      </div>
     </div>
   );
 };
