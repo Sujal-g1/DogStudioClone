@@ -1,0 +1,267 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  background-color: #000;
+  color: whitesmoke;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}  
+
+main{
+  position: relative;
+}
+
+#canvas-elem::after{
+ content: ""; /* without content they won't render */
+ height: 100%;
+ width: 100%;
+ position: absolute;
+ top:0;
+ left: 0;
+ z-index:-1;
+ /* background-color: red; */
+  background-image: url("/background.png");
+ background-repeat: no-repeat;
+ background-size: cover;
+ transition: all 0.3s linear;
+}
+
+main:has(#section2 .title:hover) #canvas-elem::after {
+  opacity: 0;
+}
+
+.images{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+
+  img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: all 0.3s linear;
+  }
+
+}
+
+main:has(#section2 .title[img-title="tomorrow"]:hover) #tomorrow{
+  opacity: 1;
+  background-color: #031029;
+}
+
+main:has(#section2 .title[img-title="navy"]:hover) #navy{
+  opacity: 1;
+  background-color: #031029;
+}
+
+main:has(#section2 .title[img-title="chicago"]:hover) #chicago{
+  opacity: 1;
+  background-color:#041335;
+}
+main:has(#section2 .title[img-title="phone"]:hover) #phone{
+  opacity: 1;
+  background-color: #031029;
+}
+main:has(#section2 .title[img-title="festival"]:hover) #festival{
+  opacity: 1;
+  background-color: #00157d;
+}
+main:has(#section2 .title[img-title="kennedy"]:hover) #kennedy{
+  opacity: 1;
+  background-color: #04182b;
+}
+main:has(#section2 .title[img-title="opera"]:hover) #opera{
+  opacity: 1;
+  background-color: #6b0302;
+}
+
+
+section{
+  min-height: 100vh;
+  /* border: 2px solid white; */
+  position: relative;
+  z-index:2;
+}
+
+#section1{
+
+  position: relative;
+
+  nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2.5rem; 
+    padding-top: 3.7rem;
+    
+    .nav-elem:nth-child(2){
+      margin-right: auto; /* Pushes it away from the right side */
+      margin-left: 35rem;  /* Adjust this to position it exactly where you want */
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size:13px;
+      font-weight: 300;
+    
+    i{
+      color:red
+    }}
+
+    svg{
+      max-width: 7rem; 
+      width: 100%;
+      height: 100%;
+    }
+
+    .nav-elem:nth-child(3){
+      font-size: 30px;
+      color:white
+    }
+
+  }
+
+  .middle{
+    display: flex;
+
+    .left, .right{
+      width: 50%;
+    }
+
+    .left{
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-block: 5rem;
+    }
+
+    h1{
+      font-size: 8rem;
+      line-height: 0.8;
+      text-align: right;
+      font-family: 'GT Spectra Display';
+    }
+
+  }
+    
+  .bottom{
+
+    display: flex;
+
+    .left , .right{
+      width: 50%;
+    }
+
+    .right{
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+      padding-block: 6.5rem;
+      padding-left: 7rem
+    }
+    .para-1{
+      font-size: 1.8rem;
+      font-weight: 100;
+      line-height: 1.4;
+    }
+    .para-2{
+      font-size: 1rem;
+      font-weight: 100;
+      line-height: 1.5;
+      color: rgba(160, 168, 220, .7);
+    }
+    .para-3{
+      font-size: 0.7rem;
+      font-weight: 100;
+    }
+  }
+
+
+  .first-line{
+    width: 40rem;
+    background-color: rgba(255, 0, 0, 0.512);
+    height:1px;
+    position: absolute;
+    transform: rotate(45deg) translate(0,-25rem); 
+  }
+  .second-line{
+    width: 10rem;
+    background-color: rgba(255, 0, 0, 0.512);
+    height:1px;
+    position: absolute;
+    transform: rotate(-45deg);
+    top:20%;
+    right:20%;
+  }
+
+}
+
+#section2{
+
+  .titles{
+    display: flex;
+    flex-direction: column;
+    padding-inline: 2rem;
+    gap:2.5rem;
+
+  .title{
+    display: flex;
+    gap:4rem;
+    padding-block: 1rem;
+    opacity: 0.3;
+    transition: all 0.3s linear;
+    cursor: pointer;
+  }
+
+  .title:hover{
+    opacity: 1;
+  }
+
+    h1{
+      font-size: 6rem;
+      font-weight: 100;
+      /* color:rgba(160, 168, 220, .7); */
+      /* opacity: 0.5; */
+      line-height: 1;
+    }
+
+    small{
+      margin-top: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.4rem;
+      /* color:rgba(160, 168, 220, .7); */
+      /* opacity: 0.5; */
+      font-size: 0.7rem;
+      width: 200px; 
+      flex-shrink: 0;
+    }
+
+    }
+
+  }
+
+
+
+  .preloader {
+    transform: translateY(0);
+  }
+  
+  .preloader.slide-up {
+    animation: slideUp 1.2s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+    animation-delay: 1.3s;
+  }
+  
+  @keyframes slideUp {
+    to {
+      transform: translateY(-100%);
+    }
+  }
