@@ -40,9 +40,9 @@ const Preloader = ({ onComplete }) => {
     <div
       ref={containerRef}
       className="preloader"
+      style={{ position: 'absolute', inset: 0, width: '100vw', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999, overflow: 'hidden' }}
     >
-      <div className="preloader-inner">
-
+      <div className="preloader-inner" style={{ position: 'relative', width: 120, height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <svg
           ref={svgRef}
           className="preloader-svg"
@@ -68,7 +68,29 @@ const Preloader = ({ onComplete }) => {
           alt="dog"
           className="preloader-dog"
         />
-
+      </div>
+      {/* Your name at the bottom center */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 24,
+          left: 0,
+          right: 0,
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          pointerEvents: "none",
+          color: "#ececec",
+          fontFamily: "inherit",
+          fontSize: "1rem",
+          letterSpacing: "0.15em",
+          opacity: 0.7,
+          zIndex: 10000
+        }}
+      > 
+      made by - syraxX
+       
       </div>
     </div>
   );
